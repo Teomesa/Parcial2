@@ -1,9 +1,10 @@
 #include <iostream>
+#include <disp_ofensivo.h>
 
 using namespace std;
 
 int main()
 {
-    cout << "Hello World!" << endl;
-    return 0;
+   disp_ofensivo disparo;
+
 }

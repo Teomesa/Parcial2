@@ -4,7 +4,9 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
+        disp_ofensivo.cpp \
         main.cpp
 
 HEADERS += \
+    Imprimir+estructura.h \
     disp_ofensivo.h
