@@ -112,6 +112,7 @@ void Disparodef2(disp_ofensivo disparoO, disp_defensive disparoD, int Voo, int a
                 y=disparoD.Yd+Vyo*t-(0.5*G*t*t);
                 if(sqrt(pow((x2-x),2)+pow((y2-y),2))<disparoD.DO){
                     if(y<0) y=0;
+                    if(y2<0) y2=0;
                     Imprimir(angleoo,Vooo,x2,y2,t+2);
                     Imprimir(angle, V0of, x, y, t);
                     flag+=1;
@@ -166,6 +167,7 @@ void Disparodef3(disp_ofensivo disparoO, disp_defensive disparoD, int Voo, int a
                 }
                 if(flag2){
                     flag2 = 0;
+                    cout << "No impacto en los disparos esperados"<< endl;
                     break;
                 }
                 if(sqrt(pow((disparoD.Xd - x2),2)+pow((disparoD.Yd - y2),2)) < disparoO.DO){
@@ -173,6 +175,7 @@ void Disparodef3(disp_ofensivo disparoO, disp_defensive disparoD, int Voo, int a
                 }
                 if(sqrt(pow((x2 - x),2)+pow((y2 - y),2)) < disparoD.DO){
                     if(y<0) y = 0;
+                    if(y2<0) y2=0;
                     Imprimir(angleoo,Vooo,x2,y2,t+2);
                     Imprimir(angle, V0of, x, y, t);
                     flag += 1;
