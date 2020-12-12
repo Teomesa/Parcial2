@@ -1,17 +1,14 @@
 #ifndef DISP_OFENSIVO_H
 #define DISP_OFENSIVO_H
-#define G 9.81
-#define pi 3.1416
-#include<math.h>
-#include<iostream>
-#include<Imprimir+estructura.h>
 
-using namespace std;
-
-class disp_ofensivo: public Disp_ofensive
+class disp_ofensivo
 {
 public:
-    void Disparo_of(Disp_ofensive disparoO, Disp_defensive disparoD);
+    float distance=800;
+    float Ho=200;
+    float Xo=0;
+    float Yo=Ho;
+    float DO=0.05*distance;
     disp_ofensivo();
 };
 
