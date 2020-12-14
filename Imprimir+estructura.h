@@ -55,20 +55,20 @@ void Disparo_of(disp_ofensivo disparoO, disp_defensive disparoD, int Voo){
 }
 
 void Disparo_def(disp_ofensivo disparoO, disp_defensive disparoD, int Voo){
-    float Vxo, Vyo, x, y;
+    float Vxd, Vyd, x, y;
     int V0of=0;
     int t=0;
     int angle=0;
     int flag=0;
     for(V0of=Voo; ;V0of+=5){
         for(angle=0;angle<90;angle++){
-            Vxo=V0of*cos((angle+90)*pi/180);
-            Vyo=abs(V0of*sin((angle+90)*pi/180));
+            Vxd=V0of*cos((angle)*pi/180);
+            Vyd=V0of*sin((angle)*pi/180);
             x=0.0;
             y=0.0;
             for(t=0; ;t++){
-                x=Vxo*t;
-                y=disparoD.Yd+Vyo*t-(0.5*G*t*t);
+                x=Vxd*t;
+                y=disparoD.Yd+Vyd*t-(0.5*G*t*t);
                 if(sqrt(pow((disparoO.Xo-x),2)+pow((disparoO.Yo-y),2))<disparoD.DO){
                     if(y<0) y=0;
                     Imprimir(angle, V0of, x, y, t);
@@ -90,7 +90,7 @@ void Disparo_def(disp_ofensivo disparoO, disp_defensive disparoD, int Voo){
 }
 
 void Disparodef2(disp_ofensivo disparoO, disp_defensive disparoD, int Voo, int angleoo, int Vooo){
-    float Vxo = 0.0, Vyo = 0.0, x, y, Vxoo, Vyoo, x2, y2;
+    float Vxd = 0.0, Vyd = 0.0, x, y, Vxoo, Vyoo, x2, y2;
     int V0of=0;
     int t=0;
     int angle=0;
@@ -99,8 +99,8 @@ void Disparodef2(disp_ofensivo disparoO, disp_defensive disparoD, int Voo, int a
     Vyoo=Vooo*sin((angleoo)*pi/180);
     for(V0of=Voo; ;V0of+=5){
         for(angle=0;angle<90;angle++){
-            Vxo=V0of*cos((angle+90)*pi/180);
-            Vyo=V0of*sin((angle+90)*pi/180);
+            Vxd=V0of*cos((angle)*pi/180);
+            Vyd=V0of*sin((angle)*pi/180);
             x=0.0;
             y=0.0;
             x2=0.0;
@@ -108,8 +108,8 @@ void Disparodef2(disp_ofensivo disparoO, disp_defensive disparoD, int Voo, int a
             for(t=0; ;t++){
                 x2=Vxoo*(t+2);
                 y2=disparoO.Yo+Vyoo*(t+2)-(0.5*G*(t+2)*(t+2));
-                x=disparoD.Xd+Vxo*t;
-                y=disparoD.Yd+Vyo*t-(0.5*G*t*t);
+                x=disparoD.Xd+Vxd*t;
+                y=disparoD.Yd+Vyd*t-(0.5*G*t*t);
                 if(sqrt(pow((x2-x),2)+pow((y2-y),2))<disparoD.DO){
                     if(y<0) y=0;
                     if(y2<0) y2=0;
@@ -132,7 +132,7 @@ void Disparodef2(disp_ofensivo disparoO, disp_defensive disparoD, int Voo, int a
     }
 }
 void Disparodef3(disp_ofensivo disparoO, disp_defensive disparoD, int Voo, int angleoo, int Vooo){
-    float Vxo = 0.0, Vyo = 0.0, x, y, Vxoo, Vyoo, x2, y2;
+    float Vxd = 0.0, Vyd = 0.0, x, y, Vxoo, Vyoo, x2, y2;
     int V0of=0;
     int t=0;
     int angle=0;
@@ -143,8 +143,8 @@ void Disparodef3(disp_ofensivo disparoO, disp_defensive disparoD, int Voo, int a
     Vyoo=Vooo*sin((angleoo)*pi/180);
     for(V0of=Voo; ;V0of+=5){
         for(angle=0;angle<90;angle++){
-            Vxo=V0of*cos((angle+90)*pi/180);
-            Vyo=V0of*sin((angle+90)*pi/180);
+            Vxd=V0of*cos((angle)*pi/180);
+            Vyd=V0of*sin((angle)*pi/180);
             x=0.0;
             y=0.0;
             x2=0.0;
@@ -152,11 +152,11 @@ void Disparodef3(disp_ofensivo disparoO, disp_defensive disparoD, int Voo, int a
             for(t=0; ;t++){
                 x2=Vxoo*(t+2);
                 y2=disparoO.Yo+Vyoo*(t+2)-(0.5*G*(t+2)*(t+2));
-                x=disparoD.Xd+Vxo*t;
-                y=disparoD.Yd+Vyo*t-(0.5*G*t*t);
+                x=disparoD.Xd+Vxd*t;
+                y=disparoD.Yd+Vyd*t-(0.5*G*t*t);
                 for(int t2 = t; ;t2++){
-                    aux = disparoD.Xd+Vxo*t2;
-                    auy = disparoD.Yd + Vyo*t2 -(0.5*G*t2*t2);
+                    aux = disparoD.Xd+Vxd*t2;
+                    auy = disparoD.Yd + Vyd*t2 -(0.5*G*t2*t2);
                     if(sqrt(pow((disparoO.Xo - aux),2)+pow((disparoO.Yo - auy),2)) < disparoD.DO){
                         flag2 = 1;
                         break;
@@ -194,6 +194,106 @@ void Disparodef3(disp_ofensivo disparoO, disp_defensive disparoD, int Voo, int a
     if(flag != 3){
         cout << "No impacto en los disparos esperados"<< endl;
     }
+}
+
+void neutralizacion(disp_ofensivo disparo_Of, disp_defensive disparo_Def, int Angle_Of, int vel_Of){
+    int  t_Of = 0, t_Def = 2;
+    float angle_Def =0, Velx_Of, Vely_Of, Velx_Def, Vely_Def, Vel_Def = 0, Distancia;
+    float X_Def, Y_Def, X_Of, Y_Of;
+    bool Flag = 0;
+    Velx_Of = vel_Of * cos(Angle_Of * pi/180);
+    Vely_Of = vel_Of * sin(Angle_Of * pi/180);
+    for(t_Of=0; ;){
+        for(Vel_Def=10; Vel_Def+=10;)
+            for(angle_Def=20; ;angle_Def=+5){
+                Velx_Def = abs(Vel_Def * cos(angle_Def * (pi/180)));
+                Vely_Def = abs(Vel_Def * sin(angle_Def *(pi /180)));
+                for(t_Def=0; ;t_Def++){
+
+                    //coordenadas del disparo defensivo
+                    X_Def = disparo_Def.Xd - Velx_Def * t_Def;
+                    Y_Def =disparo_Def.Yd - Vely_Def * t_Def - (0.5*G*t_Def*t_Def);
+
+                    //coordenadas del ataque ofensivo
+                    X_Of = disparo_Of.Xo + Velx_Of * t_Of;
+                    Y_Of = disparo_Of.Yo + Vely_Of * t_Of - (0.5*G*t_Of*t_Of);
+                    //Actualizacion de los parametros de los ciclos for
+                    Vel_Def+=10;
+                    angle_Def+=5;
+
+                    //comparacion de la distacia con la explosion del misil defensivo
+                    Distancia = sqrt(pow(X_Of-X_Def, 2) + pow(Y_Of -Y_Def, 2));
+                    if(Distancia < disparo_Def.DO){
+                        cout<< "inminente explosion de ambos misiles" << endl;
+                        break;
+                        break;
+                        break;
+                        break;
+
+
+                        //generar los tres
+
+                    }
+                    if(Y_Def < 0){
+                        t_Of++;
+                        Y_Def = 0.0;
+                        break;
+                    }
+
+                }
+                if(Flag)
+                    break;
+                else{
+                    angle_Def = 20;
+                    break;
+                }
+            }
+        if(Flag)
+            break;
+        else
+            break;
+    }
+    //generar los tres
+    disp_ofensivo disparo_Respuesta;
+    int t_Res= 0, angle_Res = 0;
+    float X_Res, Y_Res, VelX_Res, VelY_Res, Vel_Res = Vely_Of, Distancia2;
+
+    for(Vel_Res; ;VelX_Res+=10){
+        for(angle_Def=20; ;angle_Def+=5){
+            VelX_Res = Vel_Res * cos(angle_Res * pi /180);
+            VelY_Res = Vel_Res * sin(angle_Res * pi /180);
+
+            for(t_Res; ;t_Res++){
+
+                //Coordenadas de los ataques de respuesta
+                X_Res = disparo_Respuesta.Xo + Velx_Def * t_Res;
+                Y_Res = disparo_Respuesta.Yo + VelY_Res * t_Res - (0.5 * G * pow(t_Res,2));
+
+                //comparacion de la distancia
+                Distancia2 = sqrt(pow(X_Res-X_Def, 2) + pow(Y_Res -X_Def, 2));
+
+                if(Distancia2 < disparo_Respuesta.DO){
+                    Imprimir(angle_Res, Vel_Res, X_Res, Y_Res, t_Res);
+                }
+                if(Y_Res < 0){
+                    Vel_Res++;
+                    Y_Res = 0;
+                    break;
+                }
+
+            }
+            if(Flag)
+                break;
+            else{
+                angle_Def = 20;
+                break;
+            }
+        }
+    if(Flag)
+        break;
+    else
+        break;
+}
 }
 
 #endif // IMPRIMIRESTRUCTURA_H
