@@ -5,6 +5,7 @@
 #include <disp_defensive.h>
 #include <iostream>
 #include <math.h>
+#include <stdlib.h>
 #define pi 3.1416
 #define G 9.80
 
@@ -207,7 +208,7 @@ void neutralizacion(disp_ofensivo disparo_Of, disp_defensive disparo_Def, int An
         for(Vel_Def=10; Vel_Def+=10;)
             for(angle_Def=20; ;angle_Def=+5){
                 Velx_Def = abs(Vel_Def * cos(angle_Def * (pi/180)));
-                Vely_Def = abs(Vel_Def * sin(angle_Def *(pi /180)));
+                Vely_Def = abs(Vel_Def * sin(angle_Def * (pi /180)));
                 for(t_Def=0; ;t_Def++){
 
                     //coordenadas del disparo defensivo
@@ -225,13 +226,13 @@ void neutralizacion(disp_ofensivo disparo_Of, disp_defensive disparo_Def, int An
                     Distancia = sqrt(pow(X_Of-X_Def, 2) + pow(Y_Of -Y_Def, 2));
                     if(Distancia < disparo_Def.DO){
                         cout<< "inminente explosion de ambos misiles" << endl;
+                        Y_Def=0;
+                        Y_Of=0;
+                        Imprimir(angle_Def, Vel_Def, X_Def, Y_Def, t_Def);
+                        Imprimir(Angle_Of, vel_Of, X_Of, Y_Of, t_Of);
                         break;
                         break;
-                        break;
-                        break;
-
-
-                        //generar los tres
+                        exit(-1);
 
                     }
                     if(Y_Def < 0){
@@ -253,47 +254,6 @@ void neutralizacion(disp_ofensivo disparo_Of, disp_defensive disparo_Def, int An
         else
             break;
     }
-    //generar los tres
-    disp_ofensivo disparo_Respuesta;
-    int t_Res= 0, angle_Res = 0;
-    float X_Res, Y_Res, VelX_Res, VelY_Res, Vel_Res = Vely_Of, Distancia2;
-
-    for(Vel_Res; ;VelX_Res+=10){
-        for(angle_Def=20; ;angle_Def+=5){
-            VelX_Res = Vel_Res * cos(angle_Res * pi /180);
-            VelY_Res = Vel_Res * sin(angle_Res * pi /180);
-
-            for(t_Res; ;t_Res++){
-
-                //Coordenadas de los ataques de respuesta
-                X_Res = disparo_Respuesta.Xo + Velx_Def * t_Res;
-                Y_Res = disparo_Respuesta.Yo + VelY_Res * t_Res - (0.5 * G * pow(t_Res,2));
-
-                //comparacion de la distancia
-                Distancia2 = sqrt(pow(X_Res-X_Def, 2) + pow(Y_Res -X_Def, 2));
-
-                if(Distancia2 < disparo_Respuesta.DO){
-                    Imprimir(angle_Res, Vel_Res, X_Res, Y_Res, t_Res);
-                }
-                if(Y_Res < 0){
-                    Vel_Res++;
-                    Y_Res = 0;
-                    break;
-                }
-
-            }
-            if(Flag)
-                break;
-            else{
-                angle_Def = 20;
-                break;
-            }
-        }
-    if(Flag)
-        break;
-    else
-        break;
-}
 }
 
 #endif // IMPRIMIRESTRUCTURA_H

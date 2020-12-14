@@ -64,15 +64,12 @@ int main()
         }
         case 5:
         {
-
-            int velocidadof=0;
-            float angleo;
-            cout << "Ingrese la velocidad de la bala del canon ofensivo para la simulacion que quieres hacer: "; cin >> velocidadof;
-            cout << "Ingresa el angulo de disparo: "; cin >> angleo;
-            cout << endl;
-            neutralizacion(disparo_canon_ofensivo, disparo_canon_defensivo, angleo, velocidadof);
+            neutralizacion(disparo_canon_ofensivo, disparo_canon_defensivo, 60, 20);
         }
-
+        case 6:
+        {
+            break;
+        }
         default:
         {
             cout << "Dato para la simulacion invalido, intente nuevamente" << endl << endl;
